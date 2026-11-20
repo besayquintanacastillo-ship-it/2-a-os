@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2 años</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    --gold: #c9aa72;
+    --white: #f4f0e9;
+    --muted: #88847e;
+    --background: #080909;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, #ffffff55 50%, transparent),
+        radial-gradient(1px 1px at 80% 30%, #c9aa7280 50%, transparent),
+        radial-gradient(1px 1px at 45% 75%, #ffffff55 50%, transparent),
+        radial-gradient(1px 1px at 90% 85%, #ffffff55 50%, transparent);
+    background-size: 240px 240px;
+}
+
+#lockscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 25px;
+    background: radial-gradient(ellipse at center, #191710, #080909 65%);
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.lock-content {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.symbol {
+    color: var(--gold);
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(55px, 12vw, 85px);
+    letter-spacing: 5px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 12px;
+}
+
+.lock-content input {
+    width: 100%;
+    margin-top: 48px;
+    padding: 16px;
+    background: #ffffff08;
+    border: 1px solid #ffffff25;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.enter {
+    width: 100%;
+    margin-top: 13px;
+    padding: 15px;
+    background: var(--gold);
+    border: none;
+    color: #111;
+    font-size: 10px;
+    letter-spacing: 3px;
+    transition: .3s;
+}
+
+.enter:hover {
+    background: #e3c895;
+}
+
+#error {
+    color: #c78d80;
+    font-size: 11px;
+    margin-top: 15px;
+    min-height: 15px;
+}
+
+.lock-counter-label {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+    margin-bottom: 14px;
+}
+
+.lock-counter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+
+.lock-counter-item {
+    padding: 12px 3px;
+    border: 1px solid #ffffff20;
+    background: #ffffff06;
+}
+
+.lock-counter-item strong {
+    display: block;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    font-weight: 300;
+}
+
+.lock-counter-item span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#website {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+#website.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+header {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+}
+
+.overline {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    margin-top: 28px;
+    font-size: clamp(75px, 16vw, 145px);
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    margin-top: 15px;
+    color: #aaa49b;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.line {
+    width: 55px;
+    height: 1px;
+    background: var(--gold);
+    margin: 35px auto;
+}
+
+section {
+    max-width: 850px;
+    margin: auto;
+    padding: 100px 25px;
+    text-align: center;
+}
+
+.section-number {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 8vw, 58px);
+    font-weight: 300;
+    margin-top: 18px;
+}
+
+.description {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin-top: 18px;
+}
+
+/* CONTADOR */
+
+.counter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 55px;
+}
+
+.counter-item {
+    padding: 22px 5px;
+    border: 1px solid #ffffff16;
+    background: #ffffff04;
+}
+
+.counter-item strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 45px);
+    font-weight: 300;
+    color: var(--gold);
+}
+
+.counter-item span {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* GALERÍA */
+
+.memories-grid {
+    width: 100%;
+    max-width: 650px;
+    margin: 35px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.memory-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    display: block;
+    background: #111211;
+    border: 1px solid #c9aa7245;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.memory-photo:hover {
+    border-color: var(--gold);
+    transform: scale(1.02);
+}
+
+/* CARTA */
+
+.reveal {
+    margin-top: 30px;
+    padding: 15px 25px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.reveal:hover {
+    background: var(--gold);
+    color: #080909;
+}
+
+.letter-paper {
+    display: none;
+    max-width: 620px;
+    margin: 35px auto 0;
+    padding: 35px 30px;
+    border: 1px solid #c9aa7245;
+    background: linear-gradient(145deg, #ffffff09, #c9aa7208);
+    text-align: left;
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.letter-paper.open {
+    display: block;
+    animation: letterAppear 1s ease forwards;
+}
+
+.letter-paper p {
+    color: #d8d0c4;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 20px;
+}
+
+.letter-paper p:last-child {
+    margin-bottom: 0;
+}
+
+.letter-signature {
+    color: var(--gold) !important;
+    font-size: 25px !important;
+    margin-top: 25px;
+}
+
+@keyframes letterAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* LÍNEA DEL TIEMPO */
+
+.timeline-section {
+    max-width: 750px;
+}
+
+.timeline {
+    position: relative;
+    margin-top: 65px;
+    padding-left: 35px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    bottom: 5px;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gold),
+        #ffffff30,
+        var(--gold),
+        transparent
+    );
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 55px;
+    text-align: left;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -34px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: var(--background);
+    box-shadow: 0 0 12px #c9aa7255;
+}
+
+.timeline-date {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.timeline-item h3 {
+    margin-top: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--white);
+}
+
+.timeline-item p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.timeline-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 18px;
+    border: 1px solid #c9aa7245;
+}
+
+/* JUEGO */
+
+.quiz-options {
+    display: grid;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.quiz-option {
+    padding: 17px;
+    background: #ffffff06;
+    border: 1px solid #ffffff20;
+    color: var(--white);
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.quiz-option:hover {
+    border-color: var(--gold);
+    background: #c9aa7210;
+}
+
+.quiz-option:disabled {
+    opacity: .55;
+    cursor: default;
+}
+
+.quiz-feedback {
+    min-height: 35px;
+    margin-top: 25px;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+}
+
+.quiz-progress {
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+/* DESPEDIDA FINAL */
+
+.farewell-page {
+    text-align: center;
+}
+
+.farewell-message {
+    max-width: 450px;
+    margin: 30px auto 0;
+    color: #c9c1b5;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.farewell-date {
+    display: block;
+    margin-top: 45px;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+/* NAVEGACIÓN */
+
+#website > header,
+#website > section {
+    display: none;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#website > header.active {
+    display: flex;
+}
+
+#website > section.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#website > section.timeline-section.active {
+    justify-content: flex-start;
+}
+
+#website > footer {
+    display: none;
+}
+
+.page-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 35px;
+    padding: 15px 0;
+}
+
+.page-button {
+    padding: 13px 22px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.page-button:hover {
+    background: var(--gold);
+    color: #080909;
+}
+
+.page-indicator {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+footer {
+    padding: 65px 20px;
+    text-align: center;
+    border-top: 1px solid #ffffff12;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+@media(max-width: 500px) {
+    .counter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section {
+        padding: 75px 22px;
+    }
+
+    .memories-grid {
+        gap: 9px;
+    }
+
+    .page-navigation {
+        gap: 10px;
+    }
+
+    .page-button {
+        padding: 12px 14px;
+        font-size: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<div id="lockscreen">
+    <div class="lock-content">
+        <div class="symbol">✦</div>
+        <h1>2 años</h1>
+        <p class="subtitle">Un pequeño lugar para nosotros</p>
+
+        <input type="password" id="password"
+        placeholder="Introduce la contraseña">
+
+        <button class="enter" onclick="unlock()">ENTRAR</button>
+        <p id="error"></p>
+
+        <p class="lock-counter-label">JUNTOS DESDE HACE</p>
+
+        <div class="lock-counter">
+            <div class="lock-counter-item">
+                <strong id="lock-days">0</strong>
+                <span>Días</span>
+            </div>
+            <div class="lock-counter-item">
+                <strong id="lock-hours">00</strong>
+                <span>Horas</span>
+            </div>
+            <div class="lock-counter-item">
+                <strong id="lock-minutes">00</strong>
+                <span>Minutos</span>
+            </div>
+            <div class="lock-counter-item">
+                <strong id="lock-seconds">00</strong>
+                <span>Segundos</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="website">
+
+    <!-- 1. PORTADA -->
+
+    <header>
+        <p class="overline">20 NOVIEMBRE · 2024 — 2026</p>
+        <h1 class="hero-title">2 años.</h1>
+        <p class="hero-subtitle">Y todavía queda mucho por vivir.</p>
+        <div class="line"></div>
+    </header>
+
+    <!-- 2. NUESTRA HISTORIA -->
+
+    <section class="timeline-section">
+
+        <p class="section-number">01 / NUESTRA HISTORIA</p>
+        <h2>Todo empezó con nosotros.</h2>
+
+        <p class="description">
+            Cada fecha guarda un recuerdo.
+            Cada recuerdo forma parte de nuestra historia.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">20 NOVIEMBRE 2024</span>
+                <h3>El principio.</h3>
+                <p>
+                    El día en que comenzó nuestra historia.
+                    Y sin saberlo, también todo lo que vendría después.
+                </p>
+                <img class="timeline-photo" src="fotos/foto1.jpg" alt="Nuestro primer recuerdo">
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">UN DÍA ESPECIAL</span>
+                <h3>Un recuerdo para siempre.</h3>
+                <p>
+                    Aquí añadiremos uno de esos momentos
+                    que siempre merece la pena recordar.
+                </p>
+                <img class="timeline-photo" src="fotos/foto2.jpg" alt="Un recuerdo especial">
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">OTRO MOMENTO</span>
+                <h3>De tantos momentos juntos.</h3>
+                <p>
+                    Una pequeña parte de todo lo que hemos vivido.
+                </p>
+                <img class="timeline-photo" src="fotos/foto3.jpg" alt="Otro momento juntos">
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">20 NOVIEMBRE 2026</span>
+                <h3>Dos años.</h3>
+                <p>
+                    Dos años de historia.
+                    Y todavía quedan muchísimas páginas por escribir.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. CONTADOR -->
+
+    <section>
+        <p class="section-number">02 / NUESTRO TIEMPO</p>
+        <h2>Todo este tiempo.</h2>
+        <p class="description">
+            Desde aquel 20 de noviembre de 2024.
+            Cada segundo forma parte de nuestra historia.
+        </p>
+
+        <div class="counter">
+            <div class="counter-item">
+                <strong id="days">0</strong>
+                <span>Días</span>
+            </div>
+            <div class="counter-item">
+                <strong id="hours">00</strong>
+                <span>Horas</span>
+            </div>
+            <div class="counter-item">
+                <strong id="minutes">00</strong>
+                <span>Minutos</span>
+            </div>
+            <div class="counter-item">
+                <strong id="seconds">00</strong>
+                <span>Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALERÍA DE CUATRO FOTOS -->
+
+    <section>
+        <p class="section-number">03 / RECUERDOS</p>
+        <h2>Nuestra historia.</h2>
+        <p class="description">
+            Aquí empieza nuestra historia...
+        </p>
+
+        <div class="memories-grid">
+            <img class="memory-photo" src="fotos/recuerdo1.jpg" alt="Recuerdo 1">
+            <img class="memory-photo" src="fotos/recuerdo2.jpg" alt="Recuerdo 2">
+            <img class="memory-photo" src="fotos/recuerdo3.jpg" alt="Recuerdo 3">
+            <img class="memory-photo" src="fotos/recuerdo4.jpg" alt="Recuerdo 4">
+        </div>
+    </section>
+
+    <!-- 5. JUEGO -->
+
+    <section id="quiz">
+        <p class="section-number">04 / ¿CUÁNTO NOS CONOCEMOS?</p>
+
+        <h2>Un pequeño juego.</h2>
+
+        <p class="description">
+            Algunas preguntas sobre nuestra historia.
+            ¿Cuántas conseguirás acertar?
+        </p>
+
+        <div class="quiz-progress" id="quiz-progress">
+            PREGUNTA 1 DE 3
+        </div>
+
+        <h3 id="quiz-question" style="
+            margin-top: 25px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+        ">
+            ¿Dónde quedábamos antes siempre para vernos?
+        </h3>
+
+        <div class="quiz-options" id="quiz-options"></div>
+        <p class="quiz-feedback" id="quiz-feedback"></p>
+    </section>
+
+    <!-- 6. CARTA -->
+
+    <section id="letter-page">
+        <p class="section-number">05 / ALGO PARA TI</p>
+        <h2>Una carta para ti.</h2>
+
+        <p class="description">
+            Hay cosas que prefiero decirte sin prisas.
+        </p>
+
+        <button class="reveal" id="open-letter-button" onclick="revealLetter()">
+            ABRIR MI CARTA
+        </button>
+
+        <div class="letter-paper" id="personal-letter">
+            <p>
+                Hoy es un día especial para los dos porque ya llevamos 2 años juntos,
+                y quise hacerte un regalo diferente a lo típico.
+            </p>
+
+            <p>
+                Ahora que estoy aprendiendo a hacer páginas y cosas como esta,
+                he aprovechado y he decidido hacerte algo así.
+            </p>
+
+            <p>
+                Cada vez que quieras abrirla, lo podrás hacer; no es cosa de una vez.
+            </p>
+
+            <p class="letter-signature">Te amo mucho.</p>
+        </div>
+    </section>
+
+    <!-- 7. DESPEDIDA FINAL -->
+
+<section id="farewell-page" class="farewell-page">
+
+    <p class="section-number">06 / HASTA PRONTO</p>
+
+    <h2>Y esto no acaba aquí.</h2>
+
+    <p class="farewell-message">
+        Esto es solo una pequeña parte de todo lo que hemos vivido.
+        Lo mejor todavía está por venir.
+    </p>
+
+    <span class="farewell-date">20 · 11 · 2026</span>
+
+</section>
+
+    <footer>
+        HECHO CON MUCHO CARIÑO · 20.11.2026
+    </footer>
+
+</div>
+
+<script>
+
+/* CONTRASEÑA */
+
+const PASSWORD = "Daraeslamejor";
+
+function unlock() {
+    const value = document.getElementById("password").value;
+
+    if (value === PASSWORD) {
+        const lock = document.getElementById("lockscreen");
+        const website = document.getElementById("website");
+
+        lock.style.opacity = "0";
+        lock.style.visibility = "hidden";
+        website.classList.add("visible");
+    } else {
+        document.getElementById("error").textContent =
+            "Contraseña incorrecta.";
+    }
+}
+
+document.getElementById("password")
+.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") unlock();
+});
+
+/* CARTA */
+
+function revealLetter() {
+    const letter = document.getElementById("personal-letter");
+    const button = document.getElementById("open-letter-button");
+
+    letter.classList.add("open");
+    button.textContent = "MI CARTA";
+    button.disabled = true;
+    button.style.opacity = "0.6";
+    button.style.cursor = "default";
+}
+
+/* CONTADORES */
+
+function updateCounter() {
+    const start = new Date("2024-11-20T00:00:00");
+    const now = new Date();
+
+    const difference = Math.max(0, now - start);
+    const totalSeconds = Math.floor(difference / 1000);
+
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = String(
+        Math.floor((totalSeconds % 86400) / 3600)
+    ).padStart(2, "0");
+
+    const minutes = String(
+        Math.floor((totalSeconds % 3600) / 60)
+    ).padStart(2, "0");
+
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+
+    document.getElementById("lock-days").textContent = days;
+    document.getElementById("lock-hours").textContent = hours;
+    document.getElementById("lock-minutes").textContent = minutes;
+    document.getElementById("lock-seconds").textContent = seconds;
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+}
+
+updateCounter();
+setInterval(updateCounter, 1000);
+
+/* PREGUNTAS */
+
+const quizQuestions = [
+    {
+        question: "¿Dónde quedábamos antes siempre para vernos?",
+        options: [
+            "En la Casa de la Juventud",
+            "En el parque",
+            "En el centro comercial"
+        ],
+        correct: 0
+    },
+    {
+        question: "¿Al principio cuánto pensaste que duraríamos?",
+        options: [
+            "Poco",
+            "Mucho",
+            "Nada"
+        ],
+        correct: -1
+    },
+    {
+        question: "¿Qué día comenzó nuestra historia?",
+        options: [
+            "20 de noviembre",
+            "20 de diciembre",
+            "20 de octubre"
+        ],
+        correct: 0
+    }
+];
+
+let currentQuestion = 0;
+let quizScore = 0;
+
+function answerQuiz(selected) {
+    const question = quizQuestions[currentQuestion];
+    const feedback = document.getElementById("quiz-feedback");
+
+    if (question.correct === -1) {
+        feedback.textContent = "¡Y mira dónde estamos ahora! ❤️";
+    } else if (selected === question.correct) {
+        quizScore++;
+        feedback.textContent = "¡Exacto! ❤️";
+    } else {
+        feedback.textContent = "¡Casi! La respuesta era otra.";
+    }
+
+    document.querySelectorAll(".quiz-option").forEach(button => {
+        button.disabled = true;
+    });
+
+    setTimeout(() => {
+        currentQuestion++;
+
+        if (currentQuestion < quizQuestions.length) {
+            loadQuestion();
+        } else {
+            document.getElementById("quiz-question").textContent =
+                "¡Has terminado!";
+
+            document.getElementById("quiz-options").innerHTML = "";
+
+            document.getElementById("quiz-progress").textContent =
+                "RESULTADO FINAL";
+
+            feedback.textContent =
+                quizScore + " DE 2 ACIERTOS. ¡Nuestra historia continúa!";
+        }
+    }, 1200);
+}
+
+function loadQuestion() {
+    const question = quizQuestions[currentQuestion];
+
+    document.getElementById("quiz-progress").textContent =
+        "PREGUNTA " + (currentQuestion + 1) + " DE 3";
+
+    document.getElementById("quiz-question").textContent =
+        question.question;
+
+    document.getElementById("quiz-feedback").textContent = "";
+
+    document.getElementById("quiz-options").innerHTML =
+        question.options.map((option, index) =>
+            `<button class="quiz-option" onclick="answerQuiz(${index})">${option}</button>`
+        ).join("");
+}
+
+loadQuestion();
+
+/* NAVEGACIÓN ENTRE PÁGINAS */
+
+const sitePages = Array.from(
+    document.querySelectorAll("#website > header, #website > section")
+);
+
+let activePage = 0;
+
+function showPage(index) {
+    if (index < 0 || index >= sitePages.length) return;
+
+    sitePages.forEach((page, i) => {
+        page.classList.toggle("active", i === index);
+    });
+
+    activePage = index;
+    window.scrollTo(0, 0);
+}
+
+sitePages.forEach((page, index) => {
+    const navigation = document.createElement("div");
+    navigation.className = "page-navigation";
+
+    navigation.innerHTML = `
+        ${index > 0
+            ? `<button class="page-button" onclick="showPage(${index - 1})">← ANTERIOR</button>`
+            : ""}
+        <span class="page-indicator">${String(index + 1).padStart(2, "0")} / ${String(sitePages.length).padStart(2, "0")}</span>
+        ${index < sitePages.length - 1
+            ? `<button class="page-button" onclick="showPage(${index + 1})">SIGUIENTE →</button>`
+            : ""}
+    `;
+
+    page.appendChild(navigation);
+});
+
+/* ACTIVAR LA PRIMERA PÁGINA */
+
+showPage(0);
+
+</script>
+
+</body>
+</html>
